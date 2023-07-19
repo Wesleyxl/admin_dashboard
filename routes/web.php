@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Dashboard\HomeController as DashboardHomeController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,7 +14,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['middleware' => 'auth'], function () {
+    Route::group(['prefix' => 'dashboard'], function () {
+        Route::get('/', [DashboardHomeController::class, 'index'])->name('dashboard-home');
+    });
 });
+
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
