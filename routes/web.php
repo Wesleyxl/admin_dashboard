@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Dashboard\ContactController as DashboardContactController;
 use App\Http\Controllers\Dashboard\HomeController as DashboardHomeController;
+use App\Http\Controllers\Dashboard\ProfileController as DashboardProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +21,16 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'dashboard'], function () {
         Route::get('/', [DashboardHomeController::class, 'index'])->name('dashboard-home');
+
+        Route::group(['prefix' => 'contato'], function () {
+            Route::get('/', [DashboardContactController::class, 'index'])->name('dashboard-contact');
+            Route::get('cadastro', [DashboardContactController::class, 'create'])->name('dashboard-contact-create');
+        });
+
+        Route::group(['prefix' => 'perfil'], function () {
+            Route::get('/', [DashboardProfileController::class, 'edit'])->name('dashboard-profile-edit');
+            Route::post('/update', [DashboardProfileController::class, 'update'])->name('dashboard-profile-update');
+        });
     });
 });
 

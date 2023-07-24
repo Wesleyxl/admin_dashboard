@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin Dashboard</title>
+    <title>Admin Dashboard - @yield('title')</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="{{ URL::to('/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ URL::to('/dist/css/adminlte.min.css') }}">
+    <!-- summernote -->
+    <link rel="stylesheet" href="{{ URL::to('/plugins/summernote/summernote-bs4.min.css') }}">
 </head>
 
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -45,7 +47,7 @@
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <!-- Messages Dropdown Menu -->
-                <li class="nav-item dropdown">
+                {{-- <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="far fa-comments"></i>
                         <span class="badge badge-danger navbar-badge">3</span>
@@ -70,7 +72,7 @@
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
                     </div>
-                </li>
+                </li> --}}
                 <!-- Notifications Dropdown Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
@@ -83,11 +85,6 @@
                         <a href="#" class="dropdown-item">
                             <i class="fas fa-envelope mr-2"></i> 4 new messages
                             <span class="float-right text-muted text-sm">3 mins</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-users mr-2"></i> 8 friend requests
-                            <span class="float-right text-muted text-sm">12 hours</span>
                         </a>
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item">
@@ -140,19 +137,6 @@
                     </div>
                 </div>
 
-                <!-- SidebarSearch Form -->
-                {{-- <div class="form-inline">
-                    <div class="input-group" data-widget="sidebar-search">
-                        <input class="form-control form-control-sidebar" type="search" placeholder="Search"
-                            aria-label="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-sidebar">
-                                <i class="fas fa-search fa-fw"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div> --}}
-
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
@@ -165,9 +149,33 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link @yield('li-contact')">
+                                <i class="nav-icon far fa-envelope"></i>
+                                <p>
+                                    Contatios
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview" style="display: none;">
+                                <li class="nav-item">
+                                    <a href="{{ route('dashboard-contact') }}" class="nav-link @yield('a-contact')">
+                                        <i class="far fa-eye nav-icon"></i>
+                                        <p>Visualizar</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('dashboard-contact-create') }}"
+                                        class="nav-link @yield('a-contact-create')">
+                                        <i class="fas fa-plus nav-icon"></i>
+                                        <p>Cadastrar</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                         <li class="nav-header">PERFIL</li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link @yield('a-profile')">
+                            <a href="{{ route('dashboard-profile-edit') }}" class="nav-link @yield('a-profile')">
                                 <i class="nav-icon fas fa-user-alt"></i>
                                 <p>
                                     Meu Perfil
@@ -227,6 +235,14 @@
     <script src="{{ URL::to('/dist/js/demo.js') }}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ URL::to('/dist/js/pages/dashboard2.js') }}"></script>
+    <!-- Summernote -->
+    <script src="{{ URL::to('/plugins/summernote/summernote-bs4.min.js') }}"></script>
+    <script>
+        $(function() {
+            //Add text editor
+            $('#compose-textarea-contato').summernote()
+        })
+    </script>
 </body>
 
 </html>
