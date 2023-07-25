@@ -149,15 +149,15 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item @yield('ul-contact')">
                             <a href="#" class="nav-link @yield('li-contact')">
                                 <i class="nav-icon far fa-envelope"></i>
                                 <p>
-                                    Contatios
+                                    Contatos
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview" style="display: none;">
+                            <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="{{ route('dashboard-contact') }}" class="nav-link @yield('a-contact')">
                                         <i class="far fa-eye nav-icon"></i>
@@ -173,12 +173,20 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-header">PERFIL</li>
+                        <li class="nav-header">Configurações</li>
                         <li class="nav-item">
                             <a href="{{ route('dashboard-profile-edit') }}" class="nav-link @yield('a-profile')">
                                 <i class="nav-icon fas fa-user-alt"></i>
                                 <p>
                                     Meu Perfil
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link @yield('a-website')">
+                                <i class="fas fa-cogs nav-icon"></i>
+                                <p>
+                                    Website
                                 </p>
                             </a>
                         </li>
@@ -240,7 +248,10 @@
     <script>
         $(function() {
             //Add text editor
-            $('#compose-textarea-contato').summernote()
+            $('#compose-textarea-contato').summernote({
+                height: 200,
+                color: "#FFF"
+            })
         })
     </script>
 </body>

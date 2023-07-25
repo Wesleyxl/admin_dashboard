@@ -19,6 +19,7 @@ class UsersSeed extends Seeder
             'id' => 1,
             'profile_id' => 1,
             'name' => "Wesley Alves",
+            'company' => "WA Desenvolvimento",
             'email' => "wesley@email.com",
             'password' => Hash::make('teste@123'),
         ]);

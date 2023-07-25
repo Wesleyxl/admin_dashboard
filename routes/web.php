@@ -24,12 +24,21 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::group(['prefix' => 'contato'], function () {
             Route::get('/', [DashboardContactController::class, 'index'])->name('dashboard-contact');
+            Route::get('/visualizar/{id}', [DashboardContactController::class, 'edit'])->name('dashboard-contact-show');
+            Route::get('/read', [DashboardContactController::class, 'read'])->name('dashboard-contact-read');
+            Route::get('/unread', [DashboardContactController::class, 'unread'])->name('dashboard-contact-unread');
+            Route::post('/store', [DashboardContactController::class, 'store'])->name('dashboard-contact-store');
             Route::get('cadastro', [DashboardContactController::class, 'create'])->name('dashboard-contact-create');
+            Route::get('/label/{label}', [DashboardContactController::class, 'label'])->name('dashboard-contact-label');
         });
 
         Route::group(['prefix' => 'perfil'], function () {
             Route::get('/', [DashboardProfileController::class, 'edit'])->name('dashboard-profile-edit');
             Route::post('/update', [DashboardProfileController::class, 'update'])->name('dashboard-profile-update');
+        });
+
+        Route::group(['prefix' => 'website'], function () {
+
         });
     });
 });

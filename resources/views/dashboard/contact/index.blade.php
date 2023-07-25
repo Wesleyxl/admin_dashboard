@@ -2,430 +2,365 @@
 @section('title', 'Contatos')
 @section('a-contact', 'active')
 @section('li-contact', 'active')
+@section('ul-contact', 'menu-open')
 @section('content')
 
-<!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Inbox</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Inbox</li>
-            </ol>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
 
-    <!-- Main content -->
-    <section class="content">
-      <div class="row">
-        <div class="col-md-3">
-          <a href="compose.html" class="btn btn-primary btn-block mb-3">Compose</a>
+    @if (session('success'))
+        <script>
+            var click = 0;
+            setInterval(() => {
+                if (click == 0) {
+                    $("#modal-success").trigger('click');
+                    click = 1;
+                }
+            }, 0);
+        </script>
+    @endif
+    @if (session('warning'))
+        <script>
+            var click = 0;
+            setInterval(() => {
+                if (click == 0) {
+                    $("#modal-warning").trigger('click');
+                    click = 1;
+                }
+            }, 0);
+        </script>
+    @endif
+    @if (session('error'))
+        <script>
+            var click = 0;
+            setInterval(() => {
+                if (click == 0) {
+                    $("#modal-error").trigger('click');
+                    click = 1;
+                }
+            }, 0);
+        </script>
+    @endif
 
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Folders</h3>
-
-              <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                  <i class="fas fa-minus"></i>
-                </button>
-              </div>
-            </div>
-            <div class="card-body p-0">
-              <ul class="nav nav-pills flex-column">
-                <li class="nav-item active">
-                  <a href="#" class="nav-link">
-                    <i class="fas fa-inbox"></i> Inbox
-                    <span class="badge bg-primary float-right">12</span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-envelope"></i> Sent
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-file-alt"></i> Drafts
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="fas fa-filter"></i> Junk
-                    <span class="badge bg-warning float-right">65</span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-trash-alt"></i> Trash
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Labels</h3>
-
-              <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                  <i class="fas fa-minus"></i>
-                </button>
-              </div>
-            </div>
-            <div class="card-body p-0">
-              <ul class="nav nav-pills flex-column">
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle text-danger"></i>
-                    Important
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle text-warning"></i> Promotions
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle text-primary"></i>
-                    Social
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-9">
-          <div class="card card-primary card-outline">
-            <div class="card-header">
-              <h3 class="card-title">Inbox</h3>
-
-              <div class="card-tools">
-                <div class="input-group input-group-sm">
-                  <input type="text" class="form-control" placeholder="Search Mail">
-                  <div class="input-group-append">
-                    <div class="btn btn-primary">
-                      <i class="fas fa-search"></i>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Inbox</h1>
                     </div>
-                  </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Todos os contatos</li>
+                        </ol>
+                    </div>
                 </div>
-              </div>
-              <!-- /.card-tools -->
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-md-3">
+                    <a href="{{ route('dashboard-contact-create') }}" class="btn btn-primary btn-block mb-3">Cadastrar</a>
+
+                    {{-- <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Pastas</h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body p-0">
+                            <ul class="nav nav-pills flex-column">
+                                <li class="nav-item active">
+                                    <a href="{{ route('dashboard-contact') }}" class="nav-link">
+                                        <i class="fas fa-inbox"></i> Todos
+                                    </a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a href="{{ route('dashboard-contact-unread') }}" class="nav-link">
+                                        <i class="fas fa-inbox"></i> Não lidos
+                                        <span class="badge bg-primary float-right">{{ count($unread) }}</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('dashboard-contact-read') }}" class="nav-link">
+                                        <i class="far fa-envelope"></i> Lidos
+                                        <span class="badge bg-primary float-right">{{ count($read) }}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /.card-body -->
+                    </div> --}}
+                    <!-- /.card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Labels</h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body p-0">
+                            <ul class="nav nav-pills flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link"
+                                        href="{{ route('dashboard-contact-label', ['label' => 'important']) }}">
+                                        <i class="far fa-circle text-danger"></i>
+                                        Importante
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link"
+                                        href="{{ route('dashboard-contact-label', ['label' => 'compliment']) }}">
+                                        <i class="far fa-circle text-success"></i>
+                                        Elogios
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link"
+                                        href="{{ route('dashboard-contact-label', ['label' => 'service']) }}">
+                                        <i class="far fa-circle text-primary"></i>
+                                        Serviços
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link"
+                                        href="{{ route('dashboard-contact-label', ['label' => 'complaint']) }}">
+                                        <i class="far fa-circle text-warning"></i>
+                                        Reclamações
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('dashboard-contact-label', ['label' => 'other']) }}">
+                                        <i class="far fa-circle text-secondary"></i>
+                                        Outros
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+                <div class="col-md-9">
+                    <div class="card card-primary card-outline">
+                        <div class="card-header">
+                            <h3 class="card-title">Todos os contatos</h3>
+
+                            <div class="card-tools">
+                                <div class="input-group input-group-sm">
+                                    <input type="text" class="form-control" placeholder="Search Mail">
+                                    <div class="input-group-append">
+                                        <div class="btn btn-primary">
+                                            <i class="fas fa-search"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-tools -->
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body p-0">
+                            <div class="table-responsive mailbox-messages">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>status</th>
+                                            <th>Label</th>
+                                            <th>Nome</th>
+                                            <th>Titulo</th>
+                                            <th>Assunto</th>
+                                            <th>Data</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (count($unreads) > 0)
+                                            @foreach ($unreads as $unread)
+                                                <tr>
+                                                    <td class="mailbox-star">
+                                                        <a
+                                                            href="{{ route('dashboard-contact-show', ['id' => $unread['id']]) }}"><i
+                                                                class="fas fa-star text-warning"></i></a>
+                                                    </td>
+                                                    <td>
+                                                        @if ($unread['label'] == 'service')
+                                                            <i class="far fa-circle text-success"></i>
+                                                        @elseif ($unread['label'] == 'compliment')
+                                                            <i class="far fa-circle text-primary"></i>
+                                                        @elseif ($unread['label'] == 'complaint')
+                                                            <i class="far fa-circle text-danger"></i>
+                                                        @else
+                                                            <i class="far fa-circle text-secondary"></i>
+                                                        @endif
+                                                    </td>
+                                                    <td class="mailbox-attachment">
+                                                        <a
+                                                            href="{{ route('dashboard-contact-show', ['id' => $unread['id']]) }}">{{ $unread['name'] }}</a>
+                                                    </td>
+                                                    <td class="mailbox-name"><a
+                                                            href="{{ route('dashboard-contact-show', ['id' => $unread['id']]) }}">{{ $unread['title'] }}</a>
+                                                    </td>
+                                                    <td class="mailbox-subject"><a
+                                                            href="{{ route('dashboard-contact-show', ['id' => $unread['id']]) }}">{{ $unread['subject'] }}</a>
+                                                    </td>
+                                                    <td class="mailbox-date">
+                                                        {{ date('d/m/Y - H:i', strtotime($unread['created_at'])) }}
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @endif
+                                        @if (count($reads) > 0)
+                                            @foreach ($reads as $read)
+                                                <tr>
+                                                    <td class="mailbox-star">
+                                                        <a
+                                                            href="{{ route('dashboard-contact-show', ['id' => $read['id']]) }}"></a>
+                                                    </td>
+                                                    <td>
+                                                        @if ($read['label'] == 'service')
+                                                            <i class="far fa-circle text-success"></i>
+                                                        @elseif ($read['label'] == 'compliment')
+                                                            <i class="far fa-circle text-primary"></i>
+                                                        @elseif ($read['label'] == 'complaint')
+                                                            <i class="far fa-circle text-warning"></i>
+                                                        @elseif ($read['label'] == 'important')
+                                                            <i class="far fa-circle text-danger"></i>
+                                                        @else
+                                                            <i class="far fa-circle text-secondary"></i>
+                                                        @endif
+                                                    </td>
+                                                    <td class="mailbox-attachment">
+                                                        <a
+                                                            href="{{ route('dashboard-contact-show', ['id' => $read['id']]) }}">{{ $read['name'] }}</a>
+                                                    </td>
+                                                    <td class="mailbox-name"><a
+                                                            href="{{ route('dashboard-contact-show', ['id' => $read['id']]) }}">{{ $read['title'] }}</a>
+                                                    </td>
+                                                    <td class="mailbox-subject"><a
+                                                            href="{{ route('dashboard-contact-show', ['id' => $read['id']]) }}">{{ $read['subject'] }}</a>
+                                                    </td>
+                                                    <td class="mailbox-date">
+                                                        {{ date('d/m/Y - H:i', strtotime($read['created_at'])) }}</td>
+                                                </tr>
+                                            @endforeach
+                                        @endif
+                                        @if (count($reads) < 1 && count($unreads) < 1)
+                                            <td class="mailbox-date">Não há registro</td>
+                                        @endif
+                                    </tbody>
+                                </table>
+                                <!-- /.table -->
+                            </div>
+                            <!-- /.mail-box-messages -->
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer p-0">
+                            <div class="mailbox-controls">
+                                <div class="float-right">
+                                    {{-- {{-- 1-50/200 --}}
+                                    <div class="btn-group">
+                                        {{ $reads->links('pagination::bootstrap-4') }}
+                                    </div>
+                                    <!-- /.btn-group -->
+                                </div>
+                                <!-- /.float-right -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
             </div>
-            <!-- /.card-header -->
-            <div class="card-body p-0">
-              <div class="mailbox-controls">
-                <!-- Check all button -->
-                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="far fa-square"></i>
-                </button>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default btn-sm">
-                    <i class="far fa-trash-alt"></i>
-                  </button>
-                  <button type="button" class="btn btn-default btn-sm">
-                    <i class="fas fa-reply"></i>
-                  </button>
-                  <button type="button" class="btn btn-default btn-sm">
-                    <i class="fas fa-share"></i>
-                  </button>
-                </div>
-                <!-- /.btn-group -->
-                <button type="button" class="btn btn-default btn-sm">
-                  <i class="fas fa-sync-alt"></i>
-                </button>
-                <div class="float-right">
-                  1-50/200
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-sm">
-                      <i class="fas fa-chevron-left"></i>
+            <!-- /.row -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- modal success -->
+    <button type="button" id="modal-success" style="opacity: 0" class="btn btn-primary" data-toggle="modal"
+        data-target="#exampleModal">
+        Launch demo modal
+    </button>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-success" id="exampleModalLabel"><strong>Sucesso!</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
                     </button>
-                    <button type="button" class="btn btn-default btn-sm">
-                      <i class="fas fa-chevron-right"></i>
-                    </button>
-                  </div>
-                  <!-- /.btn-group -->
                 </div>
-                <!-- /.float-right -->
-              </div>
-              <div class="table-responsive mailbox-messages">
-                <table class="table table-hover table-striped">
-                  <tbody>
-                  <tr>
-                    <td>
-                      <div class="icheck-primary">
-                        <input type="checkbox" value="" id="check1">
-                        <label for="check1"></label>
-                      </div>
-                    </td>
-                    <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 3.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">5 mins ago</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="icheck-primary">
-                        <input type="checkbox" value="" id="check2">
-                        <label for="check2"></label>
-                      </div>
-                    </td>
-                    <td class="mailbox-star"><a href="#"><i class="fas fa-star-o text-warning"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 3.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fas fa-paperclip"></i></td>
-                    <td class="mailbox-date">28 mins ago</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="icheck-primary">
-                        <input type="checkbox" value="" id="check3">
-                        <label for="check3"></label>
-                      </div>
-                    </td>
-                    <td class="mailbox-star"><a href="#"><i class="fas fa-star-o text-warning"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 3.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fas fa-paperclip"></i></td>
-                    <td class="mailbox-date">11 hours ago</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="icheck-primary">
-                        <input type="checkbox" value="" id="check4">
-                        <label for="check4"></label>
-                      </div>
-                    </td>
-                    <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 3.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">15 hours ago</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="icheck-primary">
-                        <input type="checkbox" value="" id="check5">
-                        <label for="check5"></label>
-                      </div>
-                    </td>
-                    <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 3.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fas fa-paperclip"></i></td>
-                    <td class="mailbox-date">Yesterday</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="icheck-primary">
-                        <input type="checkbox" value="" id="check6">
-                        <label for="check6"></label>
-                      </div>
-                    </td>
-                    <td class="mailbox-star"><a href="#"><i class="fas fa-star-o text-warning"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 3.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fas fa-paperclip"></i></td>
-                    <td class="mailbox-date">2 days ago</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="icheck-primary">
-                        <input type="checkbox" value="" id="check7">
-                        <label for="check7"></label>
-                      </div>
-                    </td>
-                    <td class="mailbox-star"><a href="#"><i class="fas fa-star-o text-warning"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 3.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fas fa-paperclip"></i></td>
-                    <td class="mailbox-date">2 days ago</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="icheck-primary">
-                        <input type="checkbox" value="" id="check8">
-                        <label for="check8"></label>
-                      </div>
-                    </td>
-                    <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 3.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">2 days ago</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="icheck-primary">
-                        <input type="checkbox" value="" id="check9">
-                        <label for="check9"></label>
-                      </div>
-                    </td>
-                    <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 3.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">2 days ago</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="icheck-primary">
-                        <input type="checkbox" value="" id="check10">
-                        <label for="check10"></label>
-                      </div>
-                    </td>
-                    <td class="mailbox-star"><a href="#"><i class="fas fa-star-o text-warning"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 3.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">2 days ago</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="icheck-primary">
-                        <input type="checkbox" value="" id="check11">
-                        <label for="check11"></label>
-                      </div>
-                    </td>
-                    <td class="mailbox-star"><a href="#"><i class="fas fa-star-o text-warning"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 3.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fas fa-paperclip"></i></td>
-                    <td class="mailbox-date">4 days ago</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="icheck-primary">
-                        <input type="checkbox" value="" id="check12">
-                        <label for="check12"></label>
-                      </div>
-                    </td>
-                    <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 3.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">12 days ago</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="icheck-primary">
-                        <input type="checkbox" value="" id="check13">
-                        <label for="check13"></label>
-                      </div>
-                    </td>
-                    <td class="mailbox-star"><a href="#"><i class="fas fa-star-o text-warning"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 3.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fas fa-paperclip"></i></td>
-                    <td class="mailbox-date">12 days ago</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="icheck-primary">
-                        <input type="checkbox" value="" id="check14">
-                        <label for="check14"></label>
-                      </div>
-                    </td>
-                    <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 3.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fas fa-paperclip"></i></td>
-                    <td class="mailbox-date">14 days ago</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="icheck-primary">
-                        <input type="checkbox" value="" id="check15">
-                        <label for="check15"></label>
-                      </div>
-                    </td>
-                    <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 3.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fas fa-paperclip"></i></td>
-                    <td class="mailbox-date">15 days ago</td>
-                  </tr>
-                  </tbody>
-                </table>
-                <!-- /.table -->
-              </div>
-              <!-- /.mail-box-messages -->
+                <div class="modal-body">
+                    <p> {{ session('success') }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Fechar</button>
+                </div>
             </div>
-            <!-- /.card-body -->
-            <div class="card-footer p-0">
-              <div class="mailbox-controls">
-                <!-- Check all button -->
-                <button type="button" class="btn btn-default btn-sm checkbox-toggle">
-                  <i class="far fa-square"></i>
-                </button>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default btn-sm">
-                    <i class="far fa-trash-alt"></i>
-                  </button>
-                  <button type="button" class="btn btn-default btn-sm">
-                    <i class="fas fa-reply"></i>
-                  </button>
-                  <button type="button" class="btn btn-default btn-sm">
-                    <i class="fas fa-share"></i>
-                  </button>
-                </div>
-                <!-- /.btn-group -->
-                <button type="button" class="btn btn-default btn-sm">
-                  <i class="fas fa-sync-alt"></i>
-                </button>
-                <div class="float-right">
-                  1-50/200
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-sm">
-                      <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button type="button" class="btn btn-default btn-sm">
-                      <i class="fas fa-chevron-right"></i>
-                    </button>
-                  </div>
-                  <!-- /.btn-group -->
-                </div>
-                <!-- /.float-right -->
-              </div>
-            </div>
-          </div>
-          <!-- /.card -->
         </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
+    </div>
+    <!-- /.modal -->
+    <!-- modal warning -->
+    <button type="button" id="modal-warning" style="opacity: 0" class="btn btn-primary" data-toggle="modal"
+        data-target="#exampleModalWarning">
+        Launch demo modal
+    </button>
+    <div class="modal fade" id="exampleModalWarning" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-warning" id="exampleModalLabel"><strong>Atenção!</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p> {{ session('warning') }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.modal -->
+    <!-- modal error -->
+    <button type="button" id="modal-error" style="opacity: 0" class="btn btn-primary" data-toggle="modal"
+        data-target="#exampleModalError">
+        Launch demo modal
+    </button>
+    <div class="modal fade" id="exampleModalError" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger" id="exampleModalLabel"><strong>Error!</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p> {{ session('error') }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.modal -->
 
 @endsection

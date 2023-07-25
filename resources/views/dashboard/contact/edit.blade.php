@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 @section('title', 'Contatos Cadastro')
-@section('a-contact-create', 'active')
+@section('a-contact', 'active')
 @section('li-contact', 'active')
 @section('ul-contact', 'menu-open')
 @section('content')
@@ -31,40 +31,6 @@
                     <div class="col-md-3">
                         <a href="{{ route('dashboard-contact') }}" class="btn btn-primary btn-block mb-3">Voltar aos
                             contatos</a>
-
-                        {{-- <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Pastas</h3>
-
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="card-body p-0">
-                                <ul class="nav nav-pills flex-column">
-                                    <li class="nav-item active">
-                                        <a href="{{ route('dashboard-contact') }}" class="nav-link">
-                                            <i class="fas fa-inbox"></i> Todos
-                                        </a>
-                                    </li>
-                                    <li class="nav-item active">
-                                        <a href="{{ route('dashboard-contact-unread') }}" class="nav-link">
-                                            <i class="fas fa-inbox"></i> Não lidos
-                                            <span class="badge bg-primary float-right">{{ count($unread) }}</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('dashboard-contact-read') }}" class="nav-link">
-                                            <i class="far fa-envelope"></i> Lidos
-                                            <span class="badge bg-primary float-right">{{ count($read) }}</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /.card-body -->
-                        </div> --}}
                         <!-- /.card -->
                         <div class="card">
                             <div class="card-header">
@@ -132,51 +98,45 @@
                                 <!-- /.card-header -->
                                 <div class="card-body">
                                     <div class="form-group">
+                                        <label for="title">Titulo</label>
                                         <input id="title" name="title"
                                             class="form-control @error('title') is-invalid @enderror" placeholder="Titutlo:"
-                                            value="{{ old('title') }}">
+                                            value="{{ $contact['title'] }}">
                                         @error('title')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="form-group">
+                                        <label for="subject">Assunto</label>
                                         <input id="subject" name="subject"
                                             class="form-control @error('subject') is-invalid @enderror"
-                                            placeholder="Assunto:" value="{{ old('subject') }}">
+                                            placeholder="Assunto:" value="{{ $contact['subject'] }}">
                                         @error('subject')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="form-group">
+                                        <label for="name">Name</label>
                                         <input id="name" name="name"
                                             class="form-control @error('name') is-invalid @enderror" placeholder="Nome:"
-                                            value="{{ old('name') }}">
+                                            value="{{ $contact['name'] }}">
                                         @error('name')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="form-group">
+                                        <label for="email">Email</label>
                                         <input type="email" id="email" name="email"
                                             class="form-control @error('email') is-invalid @enderror" placeholder="Email:"
-                                            value="{{ old('email') }}">
+                                            value="{{ $contact['email'] }}">
                                         @error('email')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
+
                                     <div class="form-group">
-                                        <select id="label" name="label" class="form-control">
-                                            <option value="service" selected>Serviços</option>
-                                            <option value="compliment">Elogios</option>
-                                            <option value="complaint">Reclamações</option>
-                                            <option value="important">Importante</option>
-                                            <option value="other">Outros</option>
-                                        </select>
-                                        @error('label')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea id="compose-textarea-contato" name="text" class="form-control" placeholder="Digite seu texto">{{ old('text') }}</textarea>
+                                        <label for="text">Text</label>
+                                        <textarea id="compose-textarea-contato" name="text" class="form-control" placeholder="Digite seu texto">{{ $contact['text'] }}</textarea>
                                     </div>
                                     @error('text')
                                         <div class="invalid-feedback">{{ $message }}</div>

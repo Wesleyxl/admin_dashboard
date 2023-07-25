@@ -17,7 +17,7 @@ class CreateContactsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('subject');
-            $table->enum('label', ['service', 'compliment', 'complaint', 'other'])->default('other');
+            $table->enum('label', ['service', 'compliment', 'complaint', 'important', 'other'])->default('other');
             $table->string('email')->nullable();
             $table->string('name')->nullable();
             $table->longText('text');
