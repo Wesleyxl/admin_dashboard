@@ -150,10 +150,11 @@
                                             Salvar
                                         </button>
                                     </div>
-                                    <button type="reset" class="btn btn-default">
+                                    <a href="{{ route('dashboard-contact-delete', ['id' => $contact['id']]) }}"
+                                        class="btn btn-danger">
                                         <i class="fas fa-times"></i>
                                         Apagar
-                                    </button>
+                                    </a>
                                 </div>
                                 <!-- /.card-footer -->
                             </div>

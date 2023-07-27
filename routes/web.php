@@ -30,6 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('/store', [DashboardContactController::class, 'store'])->name('dashboard-contact-store');
             Route::get('cadastro', [DashboardContactController::class, 'create'])->name('dashboard-contact-create');
             Route::get('/label/{label}', [DashboardContactController::class, 'label'])->name('dashboard-contact-label');
+            Route::get('/apagar/{id}', [DashboardContactController::class, 'destroy'])->name('dashboard-contact-delete');
         });
 
         Route::group(['prefix' => 'perfil'], function () {

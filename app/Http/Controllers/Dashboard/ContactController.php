@@ -13,8 +13,8 @@ class ContactController extends Controller
     {
         $read = Contact::select('id')->where('is_read', 1)->get()->all();
         $unread = Contact::select('id')->where('is_read', 0)->get()->all();
-        $unreads = Contact::where('is_read', 0)->get()->all();
-        $reads = Contact::where('is_read', 1)->paginate(10);
+        $unreads = Contact::orderBy('id', 'desc')->where('is_read', 0)->get()->all();
+        $reads = Contact::orderBy('id', 'desc')->where('is_read', 1)->paginate(10);
 
         return view('dashboard.contact.index', array(
             'read' => $read,
@@ -27,6 +27,8 @@ class ContactController extends Controller
     public function edit($id)
     {
         $contact = Contact::find($id);
+        $contact['is_read'] = 1;
+        $contact->save();
 
         return view('dashboard.contact.edit', array(
             'contact' => $contact
@@ -63,10 +65,10 @@ class ContactController extends Controller
 
         if ($response['success']) {
 
-            return redirect()->route('dashboard-contact')->with('success', "Contato cadastrado com sucesso");
+            return redirect('/dashboard/contato')->with('success', "Contato cadastrado com sucesso");
         }
 
-        return redirect()->route('dashboard-contact')->with('error', "Algo deu errado ao cadastrar o contato");
+        return redirect('/dashboard/contato')->with('error', "Algo deu errado ao cadastrar o contato");
     }
 
     public function label($label)
@@ -83,5 +85,13 @@ class ContactController extends Controller
             'unreads' => $unreads,
             'reads' => $reads
         ));
+    }
+
+    public function destroy($id)
+    {
+        $contact = Contact::find($id);
+        $contact->delete();
+
+        return redirect('/dashboard/contato')->with('warning', "Contato apagado com sucesso");
     }
 }

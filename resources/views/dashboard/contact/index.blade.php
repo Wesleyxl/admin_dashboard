@@ -197,9 +197,11 @@
                                                         @if ($unread['label'] == 'service')
                                                             <i class="far fa-circle text-success"></i>
                                                         @elseif ($unread['label'] == 'compliment')
-                                                            <i class="far fa-circle text-primary"></i>
+                                                            <i class="far fa-circle text-success"></i>
                                                         @elseif ($unread['label'] == 'complaint')
                                                             <i class="far fa-circle text-danger"></i>
+                                                        @elseif ($unread['label'] == 'services')
+                                                            <i class="far fa-circle text-primary"></i>
                                                         @else
                                                             <i class="far fa-circle text-secondary"></i>
                                                         @endif
@@ -215,7 +217,7 @@
                                                             href="{{ route('dashboard-contact-show', ['id' => $unread['id']]) }}">{{ $unread['subject'] }}</a>
                                                     </td>
                                                     <td class="mailbox-date">
-                                                        {{ date('d/m/Y - H:i', strtotime($unread['created_at'])) }}
+                                                        {{ current_time($unread['created_at']) }}
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -251,7 +253,7 @@
                                                             href="{{ route('dashboard-contact-show', ['id' => $read['id']]) }}">{{ $read['subject'] }}</a>
                                                     </td>
                                                     <td class="mailbox-date">
-                                                        {{ date('d/m/Y - H:i', strtotime($read['created_at'])) }}</td>
+                                                        {{ current_time($read['created_at']) }}</td>
                                                 </tr>
                                             @endforeach
                                         @endif
