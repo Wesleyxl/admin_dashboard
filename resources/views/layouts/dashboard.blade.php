@@ -100,12 +100,17 @@
                         <i class="fas fa-expand-arrows-alt"></i>
                     </a>
                 </li>
-                {{-- <li class="nav-item">
-                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"
-                        role="button">
-                        <i class="fas fa-th-large"></i>
+                <li class="nav-item">
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                        <i class="fas fa-sign-out-alt"></i>
                     </a>
-                </li> --}}
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </li>
             </ul>
         </nav>
         <!-- /.navbar -->
@@ -113,7 +118,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="index3.html" class="brand-link">
+            <a href="{{ route('dashboard-home') }}" class="brand-link">
                 <img src="{{ URL::to('/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">Admin Dashboard</span>
@@ -183,7 +188,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link @yield('a-website')">
+                            <a href="{{ route('dashboard-website') }}" class="nav-link @yield('a-website')">
                                 <i class="fas fa-cogs nav-icon"></i>
                                 <p>
                                     Website

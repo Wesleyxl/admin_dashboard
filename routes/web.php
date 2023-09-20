@@ -3,6 +3,8 @@
 use App\Http\Controllers\Dashboard\ContactController as DashboardContactController;
 use App\Http\Controllers\Dashboard\HomeController as DashboardHomeController;
 use App\Http\Controllers\Dashboard\ProfileController as DashboardProfileController;
+use App\Http\Controllers\Dashboard\WebsiteController as DashboardWebsiteController;
+use App\Http\Controllers\Website\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -39,10 +41,11 @@ Route::group(['middleware' => 'auth'], function () {
         });
 
         Route::group(['prefix' => 'website'], function () {
-
+            Route::get('/', [DashboardWebsiteController::class, 'edit'])->name('dashboard-website');
         });
     });
 });
 
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
