@@ -219,7 +219,7 @@
             </strong>
             Todos os direitos reservados.
             <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 1.0.0
+                <b>Version</b> 2.5.3
             </div>
         </footer>
     </div>

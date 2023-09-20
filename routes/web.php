@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 Auth::routes();
 
+// dashboard routes
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'dashboard'], function () {
         Route::get('/', [DashboardHomeController::class, 'index'])->name('dashboard-home');
@@ -46,6 +47,6 @@ Route::group(['middleware' => 'auth'], function () {
     });
 });
 
-
+// website routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
